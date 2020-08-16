@@ -2,8 +2,27 @@
 [321.696.9234](tel:3216969234)
 
 # Michael Meta &ndash; Software Developer
-- 2 years of experience as a software developer in various capacities
-- Full stack skill-set with a concentration, most recently back end
+
+## E-Portfolio CS 499
+
+### This E-Portfolio was created to demonstrate my skills in 3 main categories within the Computer Science Scope
+  - Software Design & Engineering
+  - Data Structures & Algorithms
+  - Databases
+
+----
+In order to demonstrate proficiency in these 3 areas, I have first picked an artifact related to history within the computer science field, specifically within my current role. This artifact's larger picture is a full landing page, but the partifuclar artifact is centered around a web api with that will return a list of reports. At the end of this artifact, I will also show an example of its use case.
+
+---
+
+## Code Review Video for Planning of Enhancements
+
+[![Code Review](http://img.youtube.com/vi/78OJg9KxB3U/0.jpg)](https://youtu.be/78OJg9KxB3U "Code Review")
+
+----
+
+## Software Design & Engineering
+
 
 ## Education
 **Southern New Hampshire University, NH**  
