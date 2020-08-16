@@ -311,3 +311,35 @@ The ehancements were made using Entity Framework Core. This library allows for a
 The objective was met in this ehancement section because the data store was corrected for efficiences, and the best part, I was able to show proficiency in the use of EF Core 3+. The column types were changed for proper memory usage, indexes were added to make queries faster as well.
 
 My biggest take away from this section was understanding speed and efficiency increases when using indexes in SQL Server. When the table is small (few rows) queries might not be affected by inefficiences. However, as the data grows the table grows, and without indexes, SQL Server would be slower to return queries. Slower queries means bad application performance and ultimately in this case a slow web API that clients would not want to use.
+
+# Now... What You Have All Been Waiting To Click!
+
+## The following is the artifact as a whole.
+
+### To Review...
+
+- We have created a data store table
+- We have created a backend to access this data
+- We have created an example of how to display this data
+
+Proficiency in the 3 categories was met.
+
+- Software Design & Engineering
+  - Repository Pattern
+  - Separation of Layers
+  - Controllers and Routes with Single Responsibility
+
+- Data Structures & Algorithms
+  - Plain Old CLR Objects Mapped to Data Transfer Objects
+  - LINQ for Faster List Filters
+  - Report Validation Method Logical Change for Efficiency
+
+
+- Databases
+  - SQL Server Table
+  - Indexes Added for Query Efficiency
+  - Data Column Types Changed to Match Data & Data Size
+
+While the display of the data was not necessarily touched on in this project... as a whole, my goal was to ultimately demonstrate how a client might use the application created.
+
+We will show an Angular front end, requesting an endpoint which our application is listening on.
