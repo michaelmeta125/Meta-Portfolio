@@ -17,9 +17,8 @@ My proficiency in data structures and alorithms began in my Python course. While
 
 I mentioned the different databases I became familiar with throughout this course, most notably MongoDB and MySQL, but also importantly was engineering them in an efficient way. In my computer science course we learning how to put indexes in the MySQL database. We were then given queries to run, and it was clear the differences in run efficiences. This particular learning experience brought me back into work, and the DBAs often did not have to edit my tables nearly as much as before. I would be able to create tables that were specifically made for fast inserts updates and deletes. Indexes are so simple to me now, and just another way I have become more proficient in creating a database for my applications.
 
+One thing I neglected to mention was in regards to security. While this particular application (artifact) will be on a Windows Macchine and security will be controlled with ADOM groups, the Linux course I took really gave me a better understanding of how to create structure for the application files with security on Linux, which I think it is important to be able to speak to. So because of the modular way Linux is setup, you can more easily limit the users. For example with Windows, there are so many items a users will need to be able to have privileges too just for a specific application to run properly. This can be insecure compared to Linux, which the course greatly highlighted.
 
-
-Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengthsand shape your professional goals and values and prepared you to either enter or become more employable in the computer science field. Use specific examples from your program and include examples outside of the artifacts included in your ePortfolio. Please address following topics: collaborating in a team environment, communicating to stakeholders, data structures and algorithms, software engineering and database, and security. Note: This should function as an overall introduction to your skills and you will become more specific relative to the included artifacts in the next section.B.Summarize/introduce how your artifacts fit together and inform the portfolio as a whole; this will help demonstrate the full range of your computer science talents and abilities? This section should introduce your audience to the technical artifacts that will follow the professional self-assessmen
 
 ### This E-Portfolio was created to demonstrate my skills in 3 main categories within the Computer Science Scope
   - Software Design & Engineering
@@ -28,14 +27,6 @@ Discuss how completing your coursework throughout the program and developing the
 
 ----
 In order to demonstrate proficiency in these 3 areas, I have first picked an artifact related to history within the computer science field, specifically within my current role. This artifact's larger picture is a full landing page, but the partifuclar artifact is centered around a web api with that will return a list of reports. At the end of this artifact, I will also show an example of its use case.
-
----
-
-## Code Review Video for Planning of Enhancements
-
-[![Code Review](https://img.youtube.com/vi/PH7EcjEd5M8/0.jpg)](https://youtu.be/PH7EcjEd5M8  "Code Review")
-
-----
 
 ## Artifact Full Review & Description
 
@@ -60,6 +51,13 @@ Finally, I would like to explain why this artifact as a whole is a great way to 
 Data store -> Backend -> Frontend (Client)
 
 ---
+
+## Code Review Video for Planning of Enhancements
+
+[![Code Review](https://img.youtube.com/vi/PH7EcjEd5M8/0.jpg)](https://youtu.be/PH7EcjEd5M8  "Code Review")
+
+----
+
 
 
 ## Software Design & Engineering
