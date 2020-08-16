@@ -39,6 +39,10 @@ To summarize, the code review explains the ehancements and fixes to the artifact
   
 I would also like to point out the video was a good example of proficiency in code review, which I believe is a fundamental piece of the software design and engineering category. Code review is very important, and it might not just be to catch bugs or mistakes, you may even catch inefficiences, as you can see with my `if{}` statements in the `list()` creation.
 
+Finally, I would like to explain why this artifact as a whole is a great way to demonstrate proficiency in all 3 categories. I think it was great to be able to choose an artifact that is comprised of all pieces of these categories. The reason being is that we can see full circle how the data store feeds the backend and how the backend can be access from something like an Angular front end via HTTP. Separate artifacts would have worked too, and I somewhat called them separate, but in general, it all is one large artifact. 
+
+Data store -> Backend -> Frontend (Client)
+
 ---
 
 
@@ -92,7 +96,12 @@ Below I will show the code changes made and the design used.
     }
 
 ```
+
+The artifact in this enhancement section is a compilation of a few things request April 2020. While the project as a whole is to develop a landing page. The specific items for the artifact are, data store (database table specifically for this report part), web API accessed via HTTP (return results in JSON format), service layer that communicates with a set of data access repositories. The specific report item need to have a table with all the reports that is securely returned to our controllers and finally serialized to JSON and returned to the client(s). The artifact was required to use a few technologies. 
+
 In the above code block, the idea of the service is quickly illustrated. Its job is to return a proper list to the controller. The software design and engineering enhancements show us the importance of decoupling data access and presentation (web api in this case). Data strctures also come into play in this ehancement, as the goal is to have objects that are only related to the application and not necessarily all the information present in the data store. There is no reason to have every attribute of an object stored in a database table most of the time. You can see where we map from the data type object to a data transfer object to be used by the rest of the application. This separation of layers is very helpful as the application grows.
+
+The main takeaway from this enhancement was the value of code review. As I stated, I was very used to writing code and shooting it off for review. However, by having a written checklist that I run through with every piece of code I write, I was able to find inefficiences. The validation method is a perfect example of that.
 
 ---
 
@@ -143,6 +152,10 @@ As with software design & engineering enhancements, let us take a look at the da
 
 ```
 
+Reiterate for context:
+
+The artifact in this enhancement section is a compilation of a few things request April 2020. While the project as a whole is to develop a landing page. The specific items for the artifact are, data store (database table specifically for this report part), web API accessed via HTTP (return results in JSON format), service layer that communicates with a set of data access repositories. The specific report item need to have a table with all the reports that is securely returned to our controllers and finally serialized to JSON and returned to the client(s). The artifact was required to use a few technologies. 
+
 As explained a bit in the design and engineering structure, data structures and algorithm proficiency is another area in which I would like to illustrate my knowledge. In the artifact, I would like to first draw attention to the `ValidateReportList()` method. This method was changed further as described in the code review video, for ehancements as well as readbility (cleaning code). Notice the more common scenario within the binary statement is tested first, this means the code runs more efficiently. 
 
 On the data structures side, more changes were made the the repository. Created more LINQ methods which quickly handing filters of the `IEnumerable`. Some slight work was done on the data store side, but more on that later. 
@@ -155,7 +168,82 @@ The biggest takeaway from this ehancement was using every feature of the IDE. In
 
 ## Databases
 
-Finally, let us go over the ehancements to the data store.
+To see the ehancements in code form, we can take a look at the EF Migration code.
+
+```
+ protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Alerts",
+				schema: "Alert",
+                columns: table => new
+                {
+                    Guid = table.Column<Guid>(nullable: false),
+                    EffectiveDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
+                    AddedBy = table.Column<string>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
+                    Id = table.Column<int>(nullable: false),
+                    HeaderMessage = table.Column<string>(nullable: true),
+                    DetailedMessage = table.Column<string>(nullable: true),
+                    PriorityLevel = table.Column<string>(nullable: true),
+                    NotificationActive = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alerts", x => x.Guid);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReportingLinks",
+				schema: "Reports",
+                columns: table => new
+                {
+                    Guid = table.Column<Guid>(nullable: false),
+                    EffectiveDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
+                    AddedBy = table.Column<string>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
+                    LinkId = table.Column<int>(nullable: false),
+                    TypeOfReport = table.Column<string>(nullable: true),
+                    FunctionOfReport = table.Column<string>(nullable: true),
+                    LinkAddress = table.Column<string>(nullable: true),
+                    LinkDescription = table.Column<string>(nullable: true),
+                    ReportName = table.Column<string>(nullable: true),
+                    ContactEmail = table.Column<string>(nullable: true),
+                    ContactName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReportingLinks", x => x.Guid);
+                });
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Alerts");
+
+            migrationBuilder.DropTable(
+                name: "ReportingLinks");
+        }
+
+```
+Reiterate for context:
+
+The artifact in this enhancement section is a compilation of a few things request April 2020. While the project as a whole is to develop a landing page. The specific items for the artifact are, data store (database table specifically for this report part), web API accessed via HTTP (return results in JSON format), service layer that communicates with a set of data access repositories. The specific report item need to have a table with all the reports that is securely returned to our controllers and finally serialized to JSON and returned to the client(s). The artifact was required to use a few technologies. 
+
+Finally, let us go over the ehancements to the data store. During the code review, you can see the table's column's data types were not well thought out from a memory perspective. All of them were using the default values, and in most cases even when we knew the data would be a string of seven, we still allowed for SQL Server to be ready to except `MAX`. Also, no indexes were on this table. Queries ran slow and SQL Server could not create its plan accordingly. Lastly, no schema was recognizable. The table was in a mess of other tables, but creating a schema for it, we were able to better organize the database.
+
+The ehancements were made using Entity Framework Core. This library allows for a code first design, and allowed for easy migrations to the data store. It is generally the most widely used ORM when using SQL Server. You can read more about [Entity Framework](https://docs.microsoft.com/en-us/ef/core/).
+
+The objective was met in this ehancement section because the data store was corrected for efficiences, and the best part, I was able to show proficiency in the use of EF Core 3+.
+
+My biggest take away from this section was understanding speed and efficiency increases when using indexes in SQL Server. 
 
 ## Education
 **Southern New Hampshire University, NH**  
