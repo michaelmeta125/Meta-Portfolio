@@ -5,6 +5,22 @@
 
 ## E-Portfolio CS 499
 
+### Self Reflection
+
+Throughout my computer science courses I have built great proficiency in many areas. This e-portfolio is meant to demonstrate those proficiencies. I am already employed as a junior software developer at a large company, and these courses have given me a greater understanding of some of the key princples of this field. For example, prior to this course work I had never touched a noSQL database. Throughout my client server development course, I was able to use MongoDB and Python to create a REST API. Prior to this course, I would never have been able to explain noSQL options to a potential employer, and now I can speak to it, I can implement it as well.
+
+While I used GitLab daily at my current job, taking the team project course in the computer science program allowed me to understand the why behind Git methodologies. Sure I knew how to create a branch and merge it back, but some of the key pieces of Git I was missing. Something as simple as `stash` I never even went to checkout (pun intended) because I had no formal training on why it could be useful. I also like how this course demonstrate how to work on a team within the same project, and at times, same exact codebase, and even the same exact code file. I became more efficient in Git, and can also add BitBucket to my resume. Before I only could speak to Gitlab and Github.
+
+The code review process within this specific course was very helpful in communicating to stake holders. While we had done code reviews in other courses, the video code review was very important to me. I realize a code review is a technical video, but it taught me how to speak to each item in simpler terms that a stake holder could understand. I think sometimes I get caught up in speaking too much in a way that I understand, but recording myself in a video, gave me that opportunity to speak like a human to someone. More than that, I would rewatch my code review, and it kept me less confused on what to tackle next. It is funny how much I will look at code a month later, and then confuse myself, but I have my explanation in video form :).
+
+My proficiency in data structures and alorithms began in my Python course. While we were not trying to become masters in Python, the goal was the fundamentals. This is a `string` this is an `int` etc. These fundamentals keep moving with you throughout the computer science program. Boot camps are for becoming a mastery in the language as is practice, but I felt the courses in this program were meant to get the fundamentals into our brains. We would create `if` statements in python to understand how to get our alorithms from point A to B and return the proper value we desired based on criteria. All of this can be applied to a vast number of languages.
+
+I mentioned the different databases I became familiar with throughout this course, most notably MongoDB and MySQL, but also importantly was engineering them in an efficient way. In my computer science course we learning how to put indexes in the MySQL database. We were then given queries to run, and it was clear the differences in run efficiences. This particular learning experience brought me back into work, and the DBAs often did not have to edit my tables nearly as much as before. I would be able to create tables that were specifically made for fast inserts updates and deletes. Indexes are so simple to me now, and just another way I have become more proficient in creating a database for my applications.
+
+
+
+Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengthsand shape your professional goals and values and prepared you to either enter or become more employable in the computer science field. Use specific examples from your program and include examples outside of the artifacts included in your ePortfolio. Please address following topics: collaborating in a team environment, communicating to stakeholders, data structures and algorithms, software engineering and database, and security. Note: This should function as an overall introduction to your skills and you will become more specific relative to the included artifacts in the next section.B.Summarize/introduce how your artifacts fit together and inform the portfolio as a whole; this will help demonstrate the full range of your computer science talents and abilities? This section should introduce your audience to the technical artifacts that will follow the professional self-assessmen
+
 ### This E-Portfolio was created to demonstrate my skills in 3 main categories within the Computer Science Scope
   - Software Design & Engineering
   - Data Structures & Algorithms
@@ -95,11 +111,49 @@ Below I will show the code changes made and the design used.
         }
     }
 
+     [Route("api/[controller]")]
+    [ApiController]
+    public class ReportingController : ControllerBase
+    {
+
+        /// <summary>
+        /// DI setup for class services
+        /// </summary>
+        private IReportService _services;
+
+        public ReportingController(IReportService services)
+        {
+            _services = services;
+        }
+        /// <summary>
+        /// Route that will return all reports
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route ("GetAllReports")]
+        public ActionResult<IEnumerable<Report>> GetAllReports()
+        {
+            return Ok(_services.GetAllReports());
+        }
+        /// <summary>
+        /// Route that will return only active reports as specified by the date provided
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetActiveReports")]
+        public ActionResult<IEnumerable<Report>> GetActiveReports()
+        {
+            return Ok(_services.GetAllActiveReports(DateTime.Now));
+        }
+    }
+
 ```
 
 The artifact in this enhancement section is a compilation of a few things request April 2020. While the project as a whole is to develop a landing page. The specific items for the artifact are, data store (database table specifically for this report part), web API accessed via HTTP (return results in JSON format), service layer that communicates with a set of data access repositories. The specific report item need to have a table with all the reports that is securely returned to our controllers and finally serialized to JSON and returned to the client(s). The artifact was required to use a few technologies. 
 
 In the above code block, the idea of the service is quickly illustrated. Its job is to return a proper list to the controller. The software design and engineering enhancements show us the importance of decoupling data access and presentation (web api in this case). Data strctures also come into play in this ehancement, as the goal is to have objects that are only related to the application and not necessarily all the information present in the data store. There is no reason to have every attribute of an object stored in a database table most of the time. You can see where we map from the data type object to a data transfer object to be used by the rest of the application. This separation of layers is very helpful as the application grows.
+
+Also in the above code block, we can see this separation of layers by looking at the controller class. This class was created with the design princples explained above about properly decoupling different aspects of the applcation. The controller also sticks with the single respsonibility, it listens and handles the request, and returns the data. The only logic that would be inside the controller in this scenario would be server codes. Currently, we are returning 201, but in future development, there would be different codes that could be returned so the client can handle them appropriately. You can also see in this code block the addition of that other `Route`. This route is for all active reports, which will bring us full circle when we see the service methods and the updates to the repository's methods. More importantly, the new controller method demonstrates the completion of another aspect of the planned ehancements from the code review video.
 
 The main takeaway from this enhancement was the value of code review. As I stated, I was very used to writing code and shooting it off for review. However, by having a written checklist that I run through with every piece of code I write, I was able to find inefficiences. The validation method is a perfect example of that. You can imagine in another person's code review, they may compile and notice everything checks out and the code does what it says it will do, but what if they do not catch issues related to efficiency. Better I review it with a checklist first, and have that much better chance to catch those issues.
 
