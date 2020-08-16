@@ -101,7 +101,7 @@ The artifact in this enhancement section is a compilation of a few things reques
 
 In the above code block, the idea of the service is quickly illustrated. Its job is to return a proper list to the controller. The software design and engineering enhancements show us the importance of decoupling data access and presentation (web api in this case). Data strctures also come into play in this ehancement, as the goal is to have objects that are only related to the application and not necessarily all the information present in the data store. There is no reason to have every attribute of an object stored in a database table most of the time. You can see where we map from the data type object to a data transfer object to be used by the rest of the application. This separation of layers is very helpful as the application grows.
 
-The main takeaway from this enhancement was the value of code review. As I stated, I was very used to writing code and shooting it off for review. However, by having a written checklist that I run through with every piece of code I write, I was able to find inefficiences. The validation method is a perfect example of that.
+The main takeaway from this enhancement was the value of code review. As I stated, I was very used to writing code and shooting it off for review. However, by having a written checklist that I run through with every piece of code I write, I was able to find inefficiences. The validation method is a perfect example of that. You can imagine in another person's code review, they may compile and notice everything checks out and the code does what it says it will do, but what if they do not catch issues related to efficiency. Better I review it with a checklist first, and have that much better chance to catch those issues.
 
 ---
 
@@ -162,13 +162,15 @@ On the data structures side, more changes were made the the repository. Created 
 
 Lastly, change to one of the data structures for a partifular DTO changed. I decided to make a reporting type a second class, this is because I expect the reporting type object to be used for other validation further down the road, so I think this separation will be wise.
 
+This part of the artifact was important to add, because while I have made certain touches and changes to all aspects of the application as I have been going each week, I have given most focus to the subject at hand. In the data structures and algorithms, I have spent many hours trying to figure out the best way to narrow down the IEnumerable’s result set, and I think I came up with a fast solution with these changes. I think this also really helps illustrate my knowledge of using collections. I have seen some pretty slick ways to do some of this in other languages too, but I think this was showing an “ok” way. 
+
 The biggest takeaway from this ehancement was using every feature of the IDE. In this case, Visual Studio allowed me to physically see the memory usages of each algorithm as they ran. While the speed difference was minimal, I imagine one day at scale, switching the way the method validated the list, would have a serious performance gain!
 
 ---
 
 ## Databases
 
-To see the ehancements in code form, we can take a look at the EF Migration code.
+To see the ehancements in code form, we can take a look at the EF Migration code. I have also added the data object's classes.
 
 ```
  protected override void Up(MigrationBuilder migrationBuilder)
@@ -232,6 +234,19 @@ To see the ehancements in code form, we can take a look at the EF Migration code
                 name: "ReportingLinks");
         }
 
+            public class ReportingLink:BaseDataModel,IEntity
+    {
+        public int LinkId { get; set; }
+        public string TypeOfReport { get; set; }
+        public string FunctionOfReport { get; set; }
+        public string LinkAddress { get; set; }
+        public string LinkDescription { get; set; }
+        public string ReportName { get; set; }
+        public string ContactEmail { get; set; }
+        public string ContactName { get; set; }
+    }
+}
+
 ```
 Reiterate for context:
 
@@ -241,9 +256,9 @@ Finally, let us go over the ehancements to the data store. During the code revie
 
 The ehancements were made using Entity Framework Core. This library allows for a code first design, and allowed for easy migrations to the data store. It is generally the most widely used ORM when using SQL Server. You can read more about [Entity Framework](https://docs.microsoft.com/en-us/ef/core/).
 
-The objective was met in this ehancement section because the data store was corrected for efficiences, and the best part, I was able to show proficiency in the use of EF Core 3+.
+The objective was met in this ehancement section because the data store was corrected for efficiences, and the best part, I was able to show proficiency in the use of EF Core 3+. The column types were changed for proper memory usage, indexes were added to make queries faster as well.
 
-My biggest take away from this section was understanding speed and efficiency increases when using indexes in SQL Server. 
+My biggest take away from this section was understanding speed and efficiency increases when using indexes in SQL Server. When the table is small (few rows) queries might not be affected by inefficiences. However, as the data grows the table grows, and without indexes, SQL Server would be slower to return queries. Slower queries means bad application performance and ultimately in this case a slow web API that clients would not want to use.
 
 ## Education
 **Southern New Hampshire University, NH**  
