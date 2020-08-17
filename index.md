@@ -345,3 +345,9 @@ Proficiency in the 3 categories was met.
 While the display of the data was not necessarily touched on in this project... as a whole, my goal was to ultimately demonstrate how a client might use the application created.
 
 We will show an Angular front end, requesting an endpoint which our application is listening on.
+
+First, here is the JSON response of the backend we created:
+
+![WebApiResponse](webapiResponse.PNG)
+
+
