@@ -355,3 +355,9 @@ Finally, the response used in a user interface:
 ![UI Example](UIexample.png)
 
 
+Note, both of the backend repo (main application to meet the criteria of the course) and the front end UI example can be found at this repository location in [GitHub](https://github.com/michaelmeta125/Meta-EPortfolio-UI-CS499)
+
+Thank you,
+
+Mike Meta
+
