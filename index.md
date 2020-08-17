@@ -348,11 +348,11 @@ We will show an Angular front end, requesting an endpoint which our application 
 
 First, here is the JSON response of the backend we created:
 
-![WebApiResponse](webapiResponse.png)
+![WebApiResponse](https://github.com/michaelmeta125/Meta-Portfolio/blob/master/webapiResponse.PNG?raw=true)
 
 Finally, the response used in a user interface:
 
-![UI Example](UIexample.png)
+![UI Example](https://github.com/michaelmeta125/Meta-Portfolio/blob/master/UIexample.PNG?raw=true)
 
 
 Note, both of the backend repo (main application to meet the criteria of the course) and the front end UI example can be found at this repository location in [GitHub](https://github.com/michaelmeta125/Meta-EPortfolio-UI-CS499)
