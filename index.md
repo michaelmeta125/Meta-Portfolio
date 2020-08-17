@@ -348,6 +348,10 @@ We will show an Angular front end, requesting an endpoint which our application 
 
 First, here is the JSON response of the backend we created:
 
-![WebApiResponse](webapiResponse.PNG)
+![WebApiResponse](webapiResponse.png)
+
+Finally, the response used in a user interface:
+
+![UI Example](UIexample.png)
 
 
